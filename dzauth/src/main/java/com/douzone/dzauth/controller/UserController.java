@@ -29,4 +29,10 @@ public class UserController {
     public void delete(@NotBlank @PathVariable String username) {
         userService.delete(username);
     }
+
+    @GetMapping("/user")
+    public void get() {
+        System.out.println("Controller call");
+        userService.getUser();
+    }
 }

@@ -2,15 +2,15 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.douzone.dzauth.repository.AuthorityRepository">
     <select id="findByUsername" resultType="com.douzone.dzauth.entity.Authority">
-        select * from tb_dzfinal_authority where username = #{username}
+        select * from Authority where username = #{username}
     </select>
     <insert id="save">
-        insert into tb_dzfinal_authority (username, authority) values
+        insert into Authority (username, authority) values
         <foreach collection="authorities" item="item" separator=",">
             (#{username}, #{item.authority})
         </foreach>
     </insert>
     <delete id="delete">
-        delete from tb_dzfinal_authority where username= #{username}
+        delete from Authority where username= #{username}
     </delete>
 </mapper>

@@ -1,19 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.douzone.dzauth.repository.UserRepository">
-    <select id="findByUsername" resultType="com.douzone.dzauth.entity.User">
-        select * from tb_dzfinal_user where username = #{username}
+    <resultMap id="userDetail" type="com.douzone.dzauth.entity.User">
+        <result property="username" column="username"></result>
+        <collection property="authority" column="username" select="com.douzone.dzauth.repository.AuthorityRepository.findByUsername"></collection>
+    </resultMap>
+    <select id="findByUsername" resultMap="userDetail">
+        select * from User where username = #{username}
     </select>
     <insert id="save">
-        insert into tb_dzfinal_user (username, password) values (#{username}, #{password})
+        insert into User (username, password) values (#{username}, #{password})
     </insert>
     <update id="update">
-        update tb_dzfinal_user set
+        update User set
             password = #{password},
             enabled = #{enabled}
         where username = #{username}
     </update>
     <delete id="delete">
-        delete from tb_dzfinal_user where username = #{username}
+        delete from User where username = #{username}
     </delete>
 </mapper>

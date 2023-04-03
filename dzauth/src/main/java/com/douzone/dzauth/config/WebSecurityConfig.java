@@ -3,6 +3,7 @@ package com.douzone.dzauth.config;
 import com.douzone.dzauth.entity.Authority;
 import com.douzone.dzauth.entity.SecurityUser;
 import com.douzone.dzauth.entity.User;
+import com.douzone.dzauth.service.UserDetailsManagerImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -29,16 +30,22 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         return new BCryptPasswordEncoder();
     }
 
-    @Override
     @Bean
-    protected AuthenticationManager authenticationManager() throws Exception {
-        return super.authenticationManager();
+    public UserDetailsManager userDetailsManager() {
+        return new UserDetailsManagerImpl();
     }
 
+    @Override
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+        auth.userDetailsService(userDetailsManager()).passwordEncoder(passwordEncoder());
+    }
+    @Bean
+    public AuthenticationManager authenticationManagerBean() throws Exception {
+        return super.authenticationManagerBean();
+    }
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable();
         http.authorizeRequests().anyRequest().permitAll();
-        http.formLogin();
     }
 }

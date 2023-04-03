@@ -5,6 +5,7 @@ import com.douzone.dzauth.entity.Authority;
 import com.douzone.dzauth.entity.SecurityUser;
 import com.douzone.dzauth.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.UserDetailsManager;
 import org.springframework.stereotype.Service;
@@ -33,6 +34,11 @@ public class UserService {
         userDetailsManager.deleteUser(username);
     }
 
+    public void getUser() {
+        UserDetails user = userDetailsManager.loadUserByUsername("admin");
+        System.out.println(user.getUsername());
+        System.out.println(user.getAuthorities());
+    }
     private User userDTO2User(UserDTO userDTO) {
         return User.builder()
                 .username(userDTO.getUsername())

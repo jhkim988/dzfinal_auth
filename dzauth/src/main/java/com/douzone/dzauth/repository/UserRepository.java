@@ -9,14 +9,6 @@ import java.util.Optional;
 
 @Mapper
 public interface UserRepository {
-    @Results({
-            @Result(property = "id", column = "id"),
-            @Result(property = "username", column = "username"),
-            @Result(property = "password", column = "password"),
-            @Result(property = "authority",
-                    column = "id",
-                    many = @Many(select="com.douzone.dzauth.repository.AuthorityRepository.findByUsername"))
-    })
     Optional<User> findByUsername(String name);
 
     @Options(useGeneratedKeys = true, keyProperty = "id")
