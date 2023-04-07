@@ -24,7 +24,7 @@ public class UserDetailsManagerImpl implements UserDetailsManager {
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         User user = userRepository.findByUsername(username)
                 .orElseThrow(() -> new UsernameNotFoundException("Bad Credentials"));
-        System.out.println(user);
+        System.out.println("user = " + user);
         return new SecurityUser(user);
     }
 

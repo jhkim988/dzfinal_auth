@@ -11,7 +11,6 @@ import java.util.stream.Collectors;
 @Data
 public class SecurityUser implements UserDetails {
     private final User user;
-
     public SecurityUser(User user) {
         this.user = user;
     }

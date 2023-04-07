@@ -34,11 +34,6 @@ public class UserService {
         userDetailsManager.deleteUser(username);
     }
 
-    public void getUser() {
-        UserDetails user = userDetailsManager.loadUserByUsername("admin");
-        System.out.println(user.getUsername());
-        System.out.println(user.getAuthorities());
-    }
     private User userDTO2User(UserDTO userDTO) {
         return User.builder()
                 .username(userDTO.getUsername())

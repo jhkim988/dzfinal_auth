@@ -30,9 +30,4 @@ public class UserController {
         userService.delete(username);
     }
 
-    @GetMapping("/user")
-    public void get() {
-        System.out.println("Controller call");
-        userService.getUser();
-    }
 }
