@@ -95,5 +95,6 @@ public class AuthServerConfig extends AuthorizationServerConfigurerAdapter {
     @Override
     public void configure(AuthorizationServerSecurityConfigurer security) throws Exception {
         security.tokenKeyAccess("isAuthenticated()");
+        security.checkTokenAccess("isAuthenticated()");
     }
 }
