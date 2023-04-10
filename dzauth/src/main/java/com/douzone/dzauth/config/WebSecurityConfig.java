@@ -28,19 +28,15 @@ import java.util.List;
 @Configuration
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
-    @Bean
-    public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
-
-    @Bean
-    public UserDetailsManager userDetailsManager() {
-        return new UserDetailsManagerImpl();
-    }
+	@Autowired
+	private UserDetailsManager userDetailsManager;
+	
+	@Autowired
+	private PasswordEncoder passwordEncoder;
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(userDetailsManager()).passwordEncoder(passwordEncoder());
+        auth.userDetailsService(userDetailsManager).passwordEncoder(passwordEncoder);
     }
     @Bean
     public AuthenticationManager authenticationManagerBean() throws Exception {

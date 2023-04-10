@@ -52,6 +52,7 @@ public class AuthServerConfig extends AuthorizationServerConfigurerAdapter {
     private UserDetailsManager userDetailsManager;
     @Autowired
     private PasswordEncoder passwordEncoder;
+    
     @Autowired
     private AuthenticationManager authenticationManager;
 
