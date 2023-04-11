@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
+import java.util.List;
 
 @RestController
 public class UserController {
@@ -20,9 +21,8 @@ public class UserController {
     }
 
     @PutMapping("/user/{username}")
-    public void update(@NotBlank @PathVariable String username, @Valid @RequestBody UserDTO userDTO) {
-        userDTO.setUsername(username);
-        userService.update(userDTO);
+    public void update(@NotBlank @PathVariable String username, @RequestBody UserDTO.PutRequest requestBody) {
+        userService.update(username, requestBody.getAuthority());
     }
     
     @PutMapping("/changePwd/{username}")

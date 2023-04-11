@@ -13,7 +13,9 @@
     </insert>
     <update id="update">
         update User set
+        <if test="password != null">
             password = #{password},
+        </if>
             enabled = #{enabled}
         where username = #{username}
     </update>

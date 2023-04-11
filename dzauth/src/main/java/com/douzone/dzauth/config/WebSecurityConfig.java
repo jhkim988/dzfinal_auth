@@ -1,6 +1,7 @@
 package com.douzone.dzauth.config;
 
 import com.douzone.dzauth.service.UserDetailsManagerImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;

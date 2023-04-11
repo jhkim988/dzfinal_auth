@@ -14,7 +14,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class UserDTO {
+public class xUserDTO {
     @NotBlank
     private String username;
     @NotBlank
@@ -31,5 +31,13 @@ public class UserDTO {
     	private String currentPwd;
     	private String newPwd;
     	private String checkPwd;
+    }
+
+    @Data
+    @NoArgsConstructor
+    @AllArgsConstructor
+    @Builder
+    public static class PutRequest {
+        private List<String> authority;
     }
 }

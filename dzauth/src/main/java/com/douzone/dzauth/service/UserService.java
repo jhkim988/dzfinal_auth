@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.UserDetailsManager;
 import org.springframework.stereotype.Service;
@@ -29,8 +30,17 @@ public class UserService {
 		userDetailsManager.createUser(new SecurityUser(u));
 	}
 
-	public void update(UserDTO userDTO) {
-		User u = userDTO2User(userDTO);
+	public void update(String username, List<String> authorities) {
+		User u = User.builder()
+				.username(username)
+				.enabled(true)
+				.authority(authorities.stream()
+				.map(auth -> Authority.builder()
+						.username(username)
+						.authority(auth)
+						.build())
+				.collect(Collectors.toList()))
+				.build();
 		userDetailsManager.updateUser(new SecurityUser(u));
 	}
 
