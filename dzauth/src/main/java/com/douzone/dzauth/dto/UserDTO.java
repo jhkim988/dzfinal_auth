@@ -14,7 +14,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class xUserDTO {
+public class UserDTO {
     @NotBlank
     private String username;
     @NotBlank
