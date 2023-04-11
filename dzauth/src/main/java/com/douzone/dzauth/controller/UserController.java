@@ -24,6 +24,11 @@ public class UserController {
         userDTO.setUsername(username);
         userService.update(userDTO);
     }
+    
+    @PutMapping("/changePwd/{username}")
+    public void changePwd(@NotBlank @PathVariable String username, @RequestBody UserDTO.ChangePasswordRequest requestBody) {
+    	userService.changePwd(username, requestBody);
+    }
 
     @DeleteMapping("/user/{username}")
     public void delete(@NotBlank @PathVariable String username) {
