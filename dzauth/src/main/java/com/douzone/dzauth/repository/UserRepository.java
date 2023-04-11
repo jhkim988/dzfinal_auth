@@ -1,10 +1,10 @@
 package com.douzone.dzauth.repository;
 
 import com.douzone.dzauth.entity.User;
-import org.apache.ibatis.annotations.*;
+import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Options;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import java.util.List;
 import java.util.Optional;
 
 @Mapper
